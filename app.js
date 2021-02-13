@@ -1,12 +1,18 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-app.use(bodyParser.urlencoded({ extended: true }));
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const ejs = require('ejs');
 
-const memes = []
+const app = express();
 
-app.get('/', function(req,res){
-    res.sendFile(__dirname + '/index.html');
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+
+const memes = [];
+
+app.get('/', function(req, res){
+  res.render('home', {meme: memes});
 })
 
 app.post('/', function(req, res){
@@ -18,10 +24,9 @@ app.post('/', function(req, res){
   }
 
   memes.push(meme)
-
-  console.log(memes);
+  res.redirect('/')
 })
 
-app.listen(3000, function(req, res){
-    console.log('server started')
+app.listen(3000, function(){
+  console.log('Server started at Port 3000:');
 })
