@@ -1,0 +1,28 @@
+<%- include('partials/header.ejs') -%>
+
+  <div class="">
+
+    <form action="/" method="POST">
+        <div>
+            <input type="text" name="name">
+            <br>
+            <input type="text" name="caption">
+            <br>
+            <input type="url" name="url" id="">
+            <br>
+            <button type="submit" name="button">submit</button>
+        </div>
+    </form>
+
+     <% for(i = 0; i < meme.length; i++) { %>
+    <div class="">
+        <h1> <%= meme[i].name %></h1>
+        <img src='<%= meme[i].url %>'>
+        <img src="https://gph.is/2IAxl0a" alt="">
+        <a href='<%= meme[i].url %>'>go here</a>
+         <p><%= meme[i].caption %></p>
+      </div>
+      <% } %>
+  </div>
+
+<%- include('partials/footer.ejs') -%>
